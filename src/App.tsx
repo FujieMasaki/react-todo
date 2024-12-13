@@ -9,6 +9,7 @@ const App = () => {
   ]);
   const [searchKeyword, setSearchKeyword] = useState<string>("");
   const [filteredTodos, setFilteredTodos] = useState<Todo[]>([]);
+  const [newTodo, setNewTodo] = useState<string>("");
 
   useEffect(() => {
     const filtered = todos.filter((todo) =>
@@ -17,16 +18,34 @@ const App = () => {
     setFilteredTodos(filtered);
   }, [searchKeyword, todos]);
 
+  const addTodo = () => {
+    if (!newTodo.trim()) return;
+    const newTodoItem: Todo = {
+      id: todos.length + 1,
+      title: newTodo,
+      completed: false,
+    };
+    setTodos([...todos, newTodoItem]);
+    setNewTodo("");
+  };
+
   return (
     <div>
       <h2>タスクを調べる</h2>
-
+      <p>検索</p>
       <input
         type="text"
         placeholder="Search Todos..."
         value={searchKeyword}
         onChange={(e) => setSearchKeyword(e.target.value)}
       />
+      <p>追加</p>
+      <input
+        type="text"
+        value={newTodo}
+        onChange={(e) => setNewTodo(e.target.value)}
+      />
+      <button onClick={addTodo}>Add</button>
       <p>検索結果</p>
       <TodoList todos={filteredTodos} />
       <p>TodoList</p>

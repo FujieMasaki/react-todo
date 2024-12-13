@@ -1,11 +1,11 @@
 import React from "react";
 import { Todo } from "../types/Todo";
 
-type TodoList = {
+type TodoListProps = {
   todos: Todo[];
 };
 
-const TodoList: React.FC<TodoList> = ({ todos }) => {
+const TodoList: React.FC<TodoListProps> = ({ todos }) => {
   return (
     <ul>
       {todos.map((todo) => (
