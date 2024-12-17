@@ -29,6 +29,10 @@ const App = () => {
     setNewTodo("");
   };
 
+  const deleteTodo = (id: number) => {
+    setTodos(todos.filter((todo) => todo.id !== id));
+  };
+
   return (
     <div>
       <h2>タスクを調べる</h2>
@@ -47,9 +51,10 @@ const App = () => {
       />
       <button onClick={addTodo}>Add</button>
       <p>検索結果</p>
-      <TodoList todos={filteredTodos} />
+      <TodoList todos={filteredTodos} onDelete={deleteTodo} />
       <p>TodoList</p>
-      <TodoList todos={todos} />
+
+      <p>削除</p>
     </div>
   );
 };
