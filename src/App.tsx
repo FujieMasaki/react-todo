@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Todo } from "./types/Todo";
 import TodoList from "./components/TodoList";
+import "./style/App.css";
 
 const App = () => {
   const [todos, setTodos] = useState<Todo[]>([
@@ -34,27 +35,39 @@ const App = () => {
   };
 
   return (
-    <div>
-      <h2>タスクを調べる</h2>
-      <p>検索</p>
-      <input
-        type="text"
-        placeholder="Search Todos..."
-        value={searchKeyword}
-        onChange={(e) => setSearchKeyword(e.target.value)}
-      />
-      <p>追加</p>
-      <input
-        type="text"
-        value={newTodo}
-        onChange={(e) => setNewTodo(e.target.value)}
-      />
-      <button onClick={addTodo}>Add</button>
-      <p>検索結果</p>
-      <TodoList todos={filteredTodos} onDelete={deleteTodo} />
-      <p>TodoList</p>
+    <div className="container">
+      <h2 className="title">タスクを調べる</h2>
 
-      <p>削除</p>
+      <div className="form-group">
+        <p>検索</p>
+        <input
+          type="text"
+          placeholder="Search Todos..."
+          value={searchKeyword}
+          onChange={(e) => setSearchKeyword(e.target.value)}
+          className="input-field"
+        />
+      </div>
+
+      <div className="form-group">
+        <p>追加</p>
+        <input
+          type="text"
+          value={newTodo}
+          onChange={(e) => setNewTodo(e.target.value)}
+          className="input-field"
+        />
+        <button onClick={addTodo} className="button">
+          Add
+        </button>
+      </div>
+
+      <div className="form-group">
+        <p>検索結果</p>
+        <TodoList todos={filteredTodos} onDelete={deleteTodo} />
+      </div>
+
+      <p>TodoList</p>
     </div>
   );
 };
