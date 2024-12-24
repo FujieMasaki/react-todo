@@ -6,7 +6,7 @@ export type TodoList = {
   todos: Todo[];
 };
 
-export const useTodoList: React.FC<TodoListProps> = () => {
+export const useTodoList = () => {
   const [todos, setTodos] = useState<Todo[]>([
     { id: 1, title: "Learn React", completed: false },
     { id: 2, title: "TypeScript", completed: false },

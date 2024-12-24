@@ -5,8 +5,8 @@ import { Todo } from "./types/Todo";
 
 const App = () => {
   const { todos, newTodo, setNewTodo, addTodo, deleteTodo } = useTodoList();
-  const { searchKeyword, setSearchKeyword, filteredTodos } =
-    useTodoSearch(todos);
+  const { searchKeyword, setSearchKeyword, filteredTodos, onDelete } =
+    useTodoSearch(todos, deleteTodo);
   return (
     <div className="container">
       <h2 className="title">タスクを調べる</h2>
