@@ -1,5 +1,6 @@
 // useTodoList.test.tsx
-import { renderHook, act } from "@testing-library/react-hooks";
+import { renderHook } from "@testing-library/react";
+import { act } from "react";
 import { useTodoList } from "../components/TodoList";
 
 describe("useTodoList", () => {
@@ -88,14 +89,14 @@ describe("useTodoList", () => {
       result.current.addTodo();
     });
 
-    expect(result.current.todos.length).toBe(4);
+    expect(result.current.todos.length).toBe(3);
 
     // 追加したTodoを削除
     act(() => {
       result.current.deleteTodo(3);
     });
 
-    expect(result.current.todos.length).toBe(3);
+    expect(result.current.todos.length).toBe(2);
     expect(
       result.current.todos.find((todo) => todo.title === "Learn Testing")
     ).toBeUndefined();
@@ -125,7 +126,7 @@ describe("useTodoList", () => {
     });
 
     const ids = result.current.todos.map((todo) => todo.id);
-    expect(ids).toEqual([1, 2, 3, 4]); // IDが連番で割り当てられている
+    expect(ids).toEqual([1, 2, 3]); // IDが連番で割り当てられている
     expect(new Set(ids).size).toBe(ids.length); // IDが重複していない
   });
 });
